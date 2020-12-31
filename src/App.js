@@ -4,7 +4,9 @@ export default function App() {
   const [location, setLocation] = useState({})
 
   useEffect(() => {
-      navigator.geolocation.watchPosition()
+    const watchId =  navigator.geolocation.watchPosition()
+
+    return () => navigator.geolocation.clearWatch(watchId)
   }, [])
 
   function handlePositionReceived({ coords }) {
